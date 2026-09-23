@@ -1,0 +1,28 @@
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 782px) {
+  body.admin-bar .fss-nav {
+    top: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fss-slider__dots {
+    right: 16px;
+    gap: 10px;
+  }
+  .fss-slide__content {
+    padding: 0 24px;
+  }
+  .fss-nav {
+    padding: 16px 20px;
+  }
+  .fss-nav__links {
+    gap: 16px;
+  }
+  .fss-nav__links a {
+    font-size: 12px;
+  }
+  .fss-nav__logo {
+    font-size: 13px;
+  }
+}

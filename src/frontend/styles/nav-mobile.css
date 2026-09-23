@@ -1,0 +1,208 @@
+/* ============================================
+   Side navigation panel (tablet + mobile)
+   ============================================ */
+
+/* ---------- Burger trigger (top-right) ---------- */
+.fss-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10002;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 48px;
+  height: 48px;
+  align-items: center;
+}
+
+body.admin-bar .fss-menu-toggle {
+  top: 56px;
+}
+
+.fss-menu-toggle span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  transition:
+    width 0.25s ease,
+    opacity 0.2s ease;
+}
+
+.fss-menu-toggle span:nth-child(1) {
+  width: 28px;
+}
+.fss-menu-toggle span:nth-child(2) {
+  width: 22px;
+}
+.fss-menu-toggle span:nth-child(3) {
+  width: 28px;
+}
+
+.fss-menu-toggle:hover span:nth-child(2) {
+  width: 28px;
+}
+
+/* ---------- Slide-in panel ---------- */
+.fss-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 85vw;
+  z-index: 10003;
+  background: rgba(10, 10, 15, 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 90px 40px 40px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow-y: auto;
+}
+
+.fss-menu-panel.is-open {
+  transform: translateX(0);
+}
+
+/* ---------- Close button ---------- */
+.fss-menu-panel__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+body.admin-bar .fss-menu-panel__close {
+  top: 56px;
+}
+
+.fss-menu-panel__close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* ---------- Links ---------- */
+.fss-menu-panel__links {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.fss-menu-panel__links a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  padding: 6px 0;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  text-align: right;
+  width: 100%;
+  position: relative;
+}
+
+.fss-menu-panel__links a:hover {
+  opacity: 0.9;
+  transform: translateX(-4px);
+}
+
+.fss-menu-panel__links a.is-active {
+  opacity: 1;
+}
+
+.fss-menu-panel__links a.is-active::after {
+  content: "";
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+/* ---------- Dim overlay behind panel ---------- */
+.fss-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: fss-fade-in 0.25s ease;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+@keyframes fss-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Show only on tablet + mobile ---------- */
+@media (max-width: 1024px) {
+  .fss-menu-toggle {
+    display: flex;
+  }
+  .fss-nav {
+    display: none;
+  }
+  .fss-slider__dots {
+    display: none;
+  }
+}
+
+/* Prevent background scroll when the panel is open */
+body.fss-menu-open {
+  overflow: hidden;
+}

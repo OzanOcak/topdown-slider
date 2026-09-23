@@ -1,0 +1,12 @@
+{
+  "name": "topdown-slider",
+  "version": "0.1.0",
+  "description": "Full-screen vertical slider plugin for WordPress.",
+  "scripts": {
+    "start": "wp-scripts start --webpack-config=webpack.config.js",
+    "build": "wp-scripts build --webpack-config=webpack.config.js"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fss-slide__content,
+  .fss-slide__bg {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,67 @@
+# ---------- Dependencies ----------
+node_modules/
+vendor/
+package-lock.json
+yarn.lock
+composer.lock
+
+# ---------- Build artifacts ----------
+# Commented out — WordPress.org SVN needs build/ committed.
+# Uncomment if you want to keep build/ out of Git and rebuild on deploy.
+# build/
+
+# ---------- Environment ----------
+.env
+.env.local
+.env.*.local
+
+# ---------- Editor / IDE ----------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ---------- OS files ----------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# ---------- WordPress-specific ----------
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-*
+.upgrade/
+*.sql
+*.sql.gz
+
+# ---------- Language files (generated) ----------
+# Keep .po files, ignore compiled .mo — uncomment if you want.
+# languages/*.mo
+
+# ---------- Coverage / test output ----------
+coverage/
+.nyc_output/
+phpunit.xml
+.phpunit.result.cache
+
+# ---------- Misc ----------
+*.bak
+*.tmp
+*.orig
