@@ -1,6 +1,7 @@
 import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import SlideCard from "./components/SlideCard";
+import SlideList from "./components/SlideList";
+import SlideEditor from "./components/SlideEditor";
 
 const { restUrl, nonce, sliderId: initialSliderId } = window.TDS;
 
@@ -8,6 +9,7 @@ export default function App() {
   const [sliderId, setSliderId] = useState(initialSliderId || null);
   const [title, setTitle] = useState("");
   const [slides, setSlides] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState(null);
 
@@ -26,24 +28,25 @@ export default function App() {
   }, [sliderId]);
 
   const addSlide = () => {
-    setSlides([
-      ...slides,
-      {
-        id: `s_${Date.now()}`,
-        imageId: 0,
-        imageUrl: "",
-        label: "",
-        title: "",
-        description: "",
-        buttonEnabled: false,
-        buttonText: "",
-        buttonUrl: "",
-        buttonColor: "",
-        textPosition: "center",
-        textAnimation: "fade-up",
-        imageAnimation: "zoom",
-      },
-    ]);
+    const newSlide = {
+      id: `s_${Date.now()}`,
+      imageId: 0,
+      imageUrl: "",
+      label: "",
+      title: "",
+      description: "",
+      buttonEnabled: false,
+      buttonText: "",
+      buttonUrl: "",
+      buttonColor: "",
+      buttonLinkMode: "page",
+      textPosition: "center",
+      textAnimation: "fade-up",
+      imageAnimation: "zoom",
+    };
+    const next = [...slides, newSlide];
+    setSlides(next);
+    setCurrentIndex(next.length - 1);
   };
 
   const updateSlide = (id, patch) => {
@@ -51,7 +54,11 @@ export default function App() {
   };
 
   const removeSlide = (id) => {
-    setSlides(slides.filter((s) => s.id !== id));
+    const next = slides.filter((s) => s.id !== id);
+    setSlides(next);
+    if (currentIndex >= next.length) {
+      setCurrentIndex(Math.max(0, next.length - 1));
+    }
   };
 
   const save = async () => {
@@ -80,6 +87,8 @@ export default function App() {
       </div>
     );
   }
+
+  const currentSlide = slides[currentIndex];
 
   return (
     <div className="tds-admin">
@@ -113,21 +122,30 @@ export default function App() {
         </div>
       )}
 
-      <div className="tds-slides">
-        {slides.map((slide, i) => (
-          <SlideCard
-            key={slide.id}
-            index={i}
-            slide={slide}
-            onChange={(patch) => updateSlide(slide.id, patch)}
-            onRemove={() => removeSlide(slide.id)}
-          />
-        ))}
-      </div>
+      <div className="tds-editor-layout">
+        <SlideList
+          slides={slides}
+          currentIndex={currentIndex}
+          onSelect={setCurrentIndex}
+          onAdd={addSlide}
+        />
 
-      <button className="tds-btn tds-btn--add" onClick={addSlide}>
-        {__("+ Add Slide", "topdown-slider")}
-      </button>
+        {currentSlide ? (
+          <SlideEditor
+            index={currentIndex}
+            slide={currentSlide}
+            onChange={(patch) => updateSlide(currentSlide.id, patch)}
+            onRemove={() => removeSlide(currentSlide.id)}
+          />
+        ) : (
+          <div className="tds-editor-empty">
+            {__(
+              "No slides yet. Click + Add to create one.",
+              "topdown-slider",
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -66,7 +66,9 @@ class TDS_Admin {
 	private function render_editor( $slider_id ) {
     $back_url = admin_url( 'admin.php?page=topdown-slider' );
 
-    // Fetch all published pages for the button link picker.
+    $page_list = array();
+
+    // Pages.
     $pages = get_posts(
         array(
             'post_type'      => 'page',
@@ -76,8 +78,6 @@ class TDS_Admin {
             'order'          => 'ASC',
         )
     );
-
-    $page_list = array();
     foreach ( $pages as $page ) {
         $page_list[] = array(
             'id'    => $page->ID,
@@ -86,7 +86,7 @@ class TDS_Admin {
         );
     }
 
-    // Also include posts.
+    // Posts.
     $posts = get_posts(
         array(
             'post_type'      => 'post',
@@ -96,7 +96,6 @@ class TDS_Admin {
             'order'          => 'ASC',
         )
     );
-
     foreach ( $posts as $post ) {
         $page_list[] = array(
             'id'    => $post->ID,

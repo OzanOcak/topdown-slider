@@ -4,7 +4,7 @@ import "./styles/admin.css";
 
 const root = document.getElementById("tds-root");
 if (root) {
-  // Load the pages list from the inline JSON script tag.
+  // Read the pages list from the inline JSON script tag.
   const pagesEl = document.getElementById("tds-pages-data");
   if (pagesEl && window.TDS) {
     try {
