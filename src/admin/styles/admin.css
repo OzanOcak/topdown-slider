@@ -23,15 +23,18 @@
 .tds-title-input {
   font-size: 22px;
   font-weight: 600;
-  border: none;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
   outline: none;
-  background: transparent;
+  background: #fff;
   flex: 1;
   min-width: 200px;
-  padding: 4px 0;
+  padding: 4px 4px;
 }
+
 .tds-title-input:focus {
-  border-bottom: 2px solid #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .tds-header-actions {

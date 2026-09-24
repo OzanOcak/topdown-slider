@@ -2,7 +2,7 @@
 /**
  * Runs when the plugin is deleted from the plugins screen.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

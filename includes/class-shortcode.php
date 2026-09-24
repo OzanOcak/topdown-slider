@@ -1,9 +1,9 @@
 <?php
 // Placeholder. Will be filled in next.<?php
 /**
- * [topdown_slider] shortcode.
+ * [oocak_slider] shortcode.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ class TDS_Shortcode {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_shortcode( 'topdown_slider', array( $this, 'render' ) );
+		add_shortcode( 'oocak_slider', array( $this, 'render' ) );
 	}
 
 	/**
@@ -32,7 +32,7 @@ class TDS_Shortcode {
 		$atts = shortcode_atts(
 			array( 'id' => 0 ),
 			$atts,
-			'topdown_slider'
+			'oocak_slider'
 		);
 
 		$id = (int) $atts['id'];
@@ -40,9 +40,10 @@ class TDS_Shortcode {
 			return '';
 		}
 
-		if ( TDS_CPT::POST_TYPE !== get_post_type( $id ) ) {
-			return '';
-		}
+		$post = get_post( $id );
+        if ( ! $post || TDS_CPT::POST_TYPE !== $post->post_type || 'trash' === $post->post_status ) {
+            return '';
+        }
 
 		$slides = TDS_REST::get_slides( $id );
 		if ( empty( $slides ) ) {

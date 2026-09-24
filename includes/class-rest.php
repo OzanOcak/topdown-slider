@@ -2,7 +2,7 @@
 /**
  * REST API endpoints for sliders.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,9 +53,19 @@ class TDS_REST {
 	 *
 	 * @return bool
 	 */
-	public function can_edit() {
-		return current_user_can( 'edit_posts' );
-	}
+	public function can_edit( $request ) {
+    $slider_id = (int) $request['id'];
+
+    if ( ! $slider_id ) {
+        return current_user_can( 'edit_posts' );
+    }
+
+    if ( TDS_CPT::POST_TYPE !== get_post_type( $slider_id ) ) {
+        return false;
+    }
+
+    return current_user_can( 'edit_post', $slider_id );
+}
 
 	/**
 	 * GET /tds/v1/slider/{id}
@@ -69,7 +79,7 @@ class TDS_REST {
 		if ( TDS_CPT::POST_TYPE !== get_post_type( $id ) ) {
 			return new WP_Error(
 				'tds_not_found',
-				__( 'Slider not found.', 'topdown-slider' ),
+				__( 'Slider not found.', 'oocak-fullscreen-slider' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -97,7 +107,7 @@ class TDS_REST {
 		if ( TDS_CPT::POST_TYPE !== get_post_type( $id ) ) {
 			return new WP_Error(
 				'tds_not_found',
-				__( 'Slider not found.', 'topdown-slider' ),
+				__( 'Slider not found.', 'oocak-fullscreen-slider' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -105,7 +115,7 @@ class TDS_REST {
 		if ( ! is_array( $slides ) ) {
 			return new WP_Error(
 				'tds_bad_slides',
-				__( 'Slides must be an array.', 'topdown-slider' ),
+				__( 'Slides must be an array.', 'oocak-fullscreen-slider' ),
 				array( 'status' => 400 )
 			);
 		}

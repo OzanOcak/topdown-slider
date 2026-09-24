@@ -2,7 +2,7 @@
 /**
  * Admin menu, list page, editor page.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,13 +29,13 @@ class TDS_Admin {
 	 */
 	public function register_menu() {
 		add_menu_page(
-			__( 'TopDown Sliders', 'topdown-slider' ),
-			__( 'TopDown Sliders', 'topdown-slider' ),
+			__( 'Oocak Fullscreen Sliders', 'oocak-fullscreen-slider' ),
+			__( 'Oocak Fullscreen Sliders', 'oocak-fullscreen-slider' ),
 			'edit_posts',
-			'topdown-slider',
+			'oocak-fullscreen-slider',
 			array( $this, 'render_page' ),
 			'dashicons-images-alt2',
-			4
+			80
 		);
 	}
 
@@ -44,7 +44,7 @@ class TDS_Admin {
 	 */
 	public function render_page() {
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'topdown-slider' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'oocak-fullscreen-slider' ) );
 		}
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only page routing.
@@ -64,7 +64,7 @@ class TDS_Admin {
 	 * @param int $slider_id Slider post ID.
 	 */
 	private function render_editor( $slider_id ) {
-    $back_url = admin_url( 'admin.php?page=topdown-slider' );
+    $back_url = admin_url( 'admin.php?page=oocak-fullscreen-slider' );
 
     $page_list = array();
 
@@ -99,14 +99,14 @@ class TDS_Admin {
     foreach ( $posts as $post ) {
         $page_list[] = array(
             'id'    => $post->ID,
-            'title' => sprintf( '%s (%s)', get_the_title( $post ), __( 'Post', 'topdown-slider' ) ),
+            'title' => sprintf( '%s (%s)', get_the_title( $post ), __( 'Post', 'oocak-fullscreen-slider' ) ),
             'link'  => get_permalink( $post ),
         );
     }
     ?>
     <div class="wrap">
         <p style="margin:0 0 8px;">
-            <a href="<?php echo esc_url( $back_url ); ?>">&larr; <?php esc_html_e( 'All Sliders', 'topdown-slider' ); ?></a>
+            <a href="<?php echo esc_url( $back_url ); ?>">&larr; <?php esc_html_e( 'All Sliders', 'oocak-fullscreen-slider' ); ?></a>
         </p>
         <div id="tds-root" data-slider-id="<?php echo esc_attr( $slider_id ); ?>"></div>
         <script type="application/json" id="tds-pages-data">
@@ -136,40 +136,40 @@ class TDS_Admin {
 		);
 		?>
 		<div class="wrap">
-			<h1 class="wp-heading-inline"><?php esc_html_e( 'TopDown Sliders', 'topdown-slider' ); ?></h1>
+			<h1 class="wp-heading-inline"><?php esc_html_e( 'Oocak Fullscreen Sliders', 'oocak-fullscreen-slider' ); ?></h1>
 			<a href="<?php echo esc_url( $create_url ); ?>" class="page-title-action">
-				<?php esc_html_e( 'Add New Slider', 'topdown-slider' ); ?>
+				<?php esc_html_e( 'Add New Slider', 'oocak-fullscreen-slider' ); ?>
 			</a>
 			<hr class="wp-header-end">
 
 			<?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only success notice.
 if ( isset( $_GET['created'] ) ) : ?>
 				<div class="notice notice-success is-dismissible">
-					<p><?php esc_html_e( 'Slider created.', 'topdown-slider' ); ?></p>
+					<p><?php esc_html_e( 'Slider created.', 'oocak-fullscreen-slider' ); ?></p>
 				</div>
 			<?php endif; ?>
 
 			<?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only success notice.
 if ( isset( $_GET['deleted'] ) ) : ?>
 				<div class="notice notice-success is-dismissible">
-					<p><?php esc_html_e( 'Slider deleted.', 'topdown-slider' ); ?></p>
+					<p><?php esc_html_e( 'Slider deleted.', 'oocak-fullscreen-slider' ); ?></p>
 				</div>
 			<?php endif; ?>
 
 			<table class="wp-list-table widefat fixed striped">
 				<thead>
-					<tr>
-						<th><?php esc_html_e( 'Title', 'topdown-slider' ); ?></th>
-						<th style="width:100px;"><?php esc_html_e( 'Slides', 'topdown-slider' ); ?></th>
-						<th style="width:340px;"><?php esc_html_e( 'Shortcode', 'topdown-slider' ); ?></th>
-						<th style="width:260px;"><?php esc_html_e( 'Actions', 'topdown-slider' ); ?></th>
-					</tr>
-				</thead>
+                  <tr>
+                     <th scope="col"><?php esc_html_e( 'Title', 'oocak-fullscreen-slider' ); ?></th>
+                     <th scope="col" style="width:8%;"><?php esc_html_e( 'Slides', 'oocak-fullscreen-slider' ); ?></th>
+                     <th scope="col" style="width:38%;"><?php esc_html_e( 'Shortcode', 'oocak-fullscreen-slider' ); ?></th>
+                     <th scope="col" style="width:24%;"><?php esc_html_e( 'Actions', 'oocak-fullscreen-slider' ); ?></th>
+                  </tr>
+                </thead>
 				<tbody>
 					<?php if ( empty( $sliders ) ) : ?>
 						<tr>
 							<td colspan="4">
-								<?php esc_html_e( 'No sliders yet. Click "Add New Slider" to create one.', 'topdown-slider' ); ?>
+								<?php esc_html_e( 'No sliders yet. Click "Add New Slider" to create one.', 'oocak-fullscreen-slider' ); ?>
 							</td>
 						</tr>
 					<?php else : ?>
@@ -177,8 +177,8 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 							<?php
 							$slides    = TDS_REST::get_slides( $slider->ID );
 							$count     = count( $slides );
-							$edit_url  = admin_url( 'admin.php?page=topdown-slider&slider=' . $slider->ID );
-							$shortcode = '[topdown_slider id="' . $slider->ID . '"]';
+							$edit_url  = admin_url( 'admin.php?page=oocak-fullscreen-slider&slider=' . $slider->ID );
+							$shortcode = '[oocak_slider id="' . $slider->ID . '"]';
 							$del_url   = wp_nonce_url(
 								admin_url( 'admin-post.php?action=tds_delete_slider&slider=' . $slider->ID ),
 								'tds_delete_slider_' . $slider->ID
@@ -193,13 +193,13 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 								<td><?php echo esc_html( $count ); ?></td>
 								<td><code><?php echo esc_html( $shortcode ); ?></code></td>
 								<td>
-									<a href="<?php echo esc_url( $edit_url ); ?>"><?php esc_html_e( 'Edit', 'topdown-slider' ); ?></a>
+									<a href="<?php echo esc_url( $edit_url ); ?>"><?php esc_html_e( 'Edit', 'oocak-fullscreen-slider' ); ?></a>
 									|
-									<a href="<?php echo esc_url( $dup_url ); ?>"><?php esc_html_e( 'Duplicate', 'topdown-slider' ); ?></a>
+									<a href="<?php echo esc_url( $dup_url ); ?>"><?php esc_html_e( 'Duplicate', 'oocak-fullscreen-slider' ); ?></a>
 									|
 									<a href="<?php echo esc_url( $del_url ); ?>" style="color:#b32d2e;"
-										onclick="return confirm('<?php echo esc_js( __( 'Delete this slider? This cannot be undone.', 'topdown-slider' ) ); ?>');">
-										<?php esc_html_e( 'Delete', 'topdown-slider' ); ?>
+										onclick="return confirm('<?php echo esc_js( __( 'Delete this slider? This cannot be undone.', 'oocak-fullscreen-slider' ) ); ?>');">
+										<?php esc_html_e( 'Delete', 'oocak-fullscreen-slider' ); ?>
 									</a>
 								</td>
 							</tr>
@@ -216,7 +216,7 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 	 */
 	public function handle_create() {
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'Not allowed.', 'topdown-slider' ) );
+			wp_die( esc_html__( 'Not allowed.', 'oocak-fullscreen-slider' ) );
 		}
 		check_admin_referer( 'tds_create_slider' );
 
@@ -224,7 +224,7 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 			array(
 				'post_type'   => TDS_CPT::POST_TYPE,
 				'post_status' => 'publish',
-				'post_title'  => __( 'Untitled Slider', 'topdown-slider' ),
+				'post_title'  => __( 'Untitled Slider', 'oocak-fullscreen-slider' ),
 			),
 			true
 		);
@@ -234,30 +234,29 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 		}
 
 		wp_safe_redirect(
-			admin_url( 'admin.php?page=topdown-slider&slider=' . $post_id . '&created=1' )
+			admin_url( 'admin.php?page=oocak-fullscreen-slider&slider=' . $post_id . '&created=1' )
 		);
 		exit;
 	}
 
 	/**
-	 * Handle "Delete".
-	 */
-	public function handle_delete() {
+    * Handle "Delete".
+    */
+    public function handle_delete() {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- verified below.
+    $slider_id = isset( $_GET['slider'] ) ? (int) $_GET['slider'] : 0;
 
-		if ( ! current_user_can( 'delete_post', $slider_id ) ) {
-			wp_die( esc_html__( 'Not allowed.', 'topdown-slider' ) );
-		}
+    if ( ! current_user_can( 'delete_post', $slider_id ) ) {
+        wp_die( esc_html__( 'Not allowed.', 'oocak-fullscreen-slider' ) );
+    }
 
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- verified on the next line.
-        $slider_id = isset( $_GET['slider'] ) ? (int) $_GET['slider'] : 0;
+    check_admin_referer( 'tds_delete_slider_' . $slider_id );
 
-		check_admin_referer( 'tds_delete_slider_' . $slider_id );
+    wp_delete_post( $slider_id, true );
 
-		wp_trash_post( $slider_id );
-
-		wp_safe_redirect( admin_url( 'admin.php?page=topdown-slider&deleted=1' ) );
-		exit;
-	}
+    wp_safe_redirect( admin_url( 'admin.php?page=oocak-fullscreen-slider&deleted=1' ) );
+    exit;
+}
 
 	/**
 	 * Handle "Duplicate".
@@ -267,13 +266,13 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 		$slider_id = isset( $_GET['slider'] ) ? (int) $_GET['slider'] : 0;
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'Not allowed.', 'topdown-slider' ) );
+			wp_die( esc_html__( 'Not allowed.', 'oocak-fullscreen-slider' ) );
 		}
 		check_admin_referer( 'tds_duplicate_slider_' . $slider_id );
 
 		$original = get_post( $slider_id );
 		if ( ! $original || TDS_CPT::POST_TYPE !== $original->post_type ) {
-			wp_die( esc_html__( 'Slider not found.', 'topdown-slider' ) );
+			wp_die( esc_html__( 'Slider not found.', 'oocak-fullscreen-slider' ) );
 		}
 
 		$new_id = wp_insert_post(
@@ -295,7 +294,7 @@ if ( isset( $_GET['deleted'] ) ) : ?>
 		}
 
 		wp_safe_redirect(
-			admin_url( 'admin.php?page=topdown-slider&slider=' . $new_id . '&created=1' )
+			admin_url( 'admin.php?page=oocak-fullscreen-slider&slider=' . $new_id . '&created=1' )
 		);
 		exit;
 	}

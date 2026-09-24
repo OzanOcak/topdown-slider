@@ -2,7 +2,7 @@
 /**
  * Enqueue admin and frontend assets.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,7 +28,7 @@ class TDS_Assets {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_admin( $hook ) {
-		if ( 'toplevel_page_topdown-slider' !== $hook ) {
+		if ( 'toplevel_page_oocak-fullscreen-slider' !== $hook ) {
 			return;
 		}
 

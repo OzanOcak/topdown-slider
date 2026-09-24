@@ -2,7 +2,7 @@
 /**
  * Custom post type registration.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,16 +34,16 @@ class TDS_CPT {
 			self::POST_TYPE,
 			array(
 				'labels'                => array(
-					'name'               => __( 'Sliders', 'topdown-slider' ),
-					'singular_name'      => __( 'Slider', 'topdown-slider' ),
-					'add_new'            => __( 'Add New', 'topdown-slider' ),
-					'add_new_item'       => __( 'Add New Slider', 'topdown-slider' ),
-					'edit_item'          => __( 'Edit Slider', 'topdown-slider' ),
-					'new_item'           => __( 'New Slider', 'topdown-slider' ),
-					'view_item'          => __( 'View Slider', 'topdown-slider' ),
-					'search_items'       => __( 'Search Sliders', 'topdown-slider' ),
-					'not_found'          => __( 'No sliders found.', 'topdown-slider' ),
-					'not_found_in_trash' => __( 'No sliders found in Trash.', 'topdown-slider' ),
+					'name'               => __( 'Sliders', 'oocak-fullscreen-slider' ),
+					'singular_name'      => __( 'Slider', 'oocak-fullscreen-slider' ),
+					'add_new'            => __( 'Add New', 'oocak-fullscreen-slider' ),
+					'add_new_item'       => __( 'Add New Slider', 'oocak-fullscreen-slider' ),
+					'edit_item'          => __( 'Edit Slider', 'oocak-fullscreen-slider' ),
+					'new_item'           => __( 'New Slider', 'oocak-fullscreen-slider' ),
+					'view_item'          => __( 'View Slider', 'oocak-fullscreen-slider' ),
+					'search_items'       => __( 'Search Sliders', 'oocak-fullscreen-slider' ),
+					'not_found'          => __( 'No sliders found.', 'oocak-fullscreen-slider' ),
+					'not_found_in_trash' => __( 'No sliders found in Trash.', 'oocak-fullscreen-slider' ),
 				),
 				'public'                => false,
 				'show_ui'               => false,

@@ -102,7 +102,7 @@ export default function App() {
         <div className="tds-header-actions">
           <span className="tds-shortcode-hint">
             {__("Shortcode:", "topdown-slider")}{" "}
-            <code>{`[topdown_slider id="${sliderId}"]`}</code>
+            <code>{`[oocak_slider id="${sliderId}"]`}</code>
           </span>
           <button
             className="tds-btn tds-btn--primary"

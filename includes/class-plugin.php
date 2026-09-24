@@ -2,7 +2,7 @@
 /**
  * Main plugin bootstrap.
  *
- * @package TopDownSlider
+ * @package OocakFullscreenSlider
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
